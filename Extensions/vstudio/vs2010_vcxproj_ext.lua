@@ -37,10 +37,8 @@ m.categories.Nasm = {
 p.override(m, "categorizeFile", function(base, prj, file)
 	for cfg in project.eachconfig(prj) do
 		local fcfg = fileconfig.getconfig(file, cfg)
-		if fcfg then
-			if fcfg.usenasm or (cfg.usenasm and fcfg.extension == ".asm") then
-				return m.categories.Nasm
-			end
+		if fcfg and (fcfg.usenasm or (cfg.usenasm and fcfg.extension == ".asm")) then
+			return m.categories.Nasm
 		end
 	end
 	

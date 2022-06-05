@@ -28,7 +28,7 @@ end)
 
 p.override(cpp, "addRuleFile", function(base, cfg, node)
 	local fcfg = fileconfig.getconfig(node, cfg)
-	if (fcfg and fcfg.usenasm) or (not fcfg and cfg.usenasm) then
+	if fcfg and (fcfg.usenasm or (cfg.usenasm and fcfg.extension == ".asm")) then
 		local rule    = p.global.getRule("nasm")
 		local filecfg = fileconfig.getconfig(node, cfg)
 		local environ = table.shallowcopy(filecfg.environ)
