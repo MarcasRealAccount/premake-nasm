@@ -4,9 +4,10 @@ end
 
 require("gmake2")
 
-local p   = premake
-local m   = p.modules.gmake2
-local cpp = m.cpp
+local p          = premake
+local m          = p.modules.gmake2
+local cpp        = m.cpp
+local fileconfig = p.fileconfig
 
 ---
 -- Add nasm rule
