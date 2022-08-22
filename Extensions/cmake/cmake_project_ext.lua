@@ -11,8 +11,17 @@ end
 local cmake = p.extensions.cmake
 local m     = cmake.project
 
-table.insert(m.props, 1, m.enableNASM)
-table.insert(m.configProps, m.nasmFlags)
+p.override(m, "props", function(base, prj)
+	local props = base(prj)
+	table.insert(props, 1, m.enableNASM)
+	return props
+end)
+
+p.override(m, "configProps", function(base, prj)
+	local props = base(prj)
+	table.insert(props, m.nasmFlags)
+	return props
+end)
 
 function m.enableNASM(prj)
 	p.w("enable_language(ASM_NASM)")
